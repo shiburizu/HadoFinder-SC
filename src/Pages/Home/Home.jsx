@@ -15,16 +15,11 @@ const headers = {
   Authorization: `Bearer ${apiKey}`,
 };
 const endpoint = import.meta.env.VITE_SGG_URL;
+
 const Home = () => {
   const [location, setLocation] = useState([
     40.76911405953448, -73.97461862009996,
   ]);
-
-  let [lastLocation, setLastLocation] = useState([
-    40.76911405953448, -73.97461862009996,
-  ])
-  let [firstLoad, setFirstLoad] = useState(true);
-
   const [eventList, setEventList] = useState([]);
   const [firstDay, setFirstDay] = useState("");
   const [lastDay, setLastDay] = useState("");
@@ -186,18 +181,7 @@ const Home = () => {
   }, [currentEvent]);
 
   useEffect(() => {
-    console.log(firstLoad)
-    if (firstTimestamp != "") {
-      if (firstLoad) {
-        apiCall();
-        setFirstLoad(false);
-      } else {
-        if (location[0] !== lastLocation[0] || location[1] !== lastLocation[1]) {
-          apiCall();
-          setLastLocation(location)
-        }
-      }
-    }
+    apiCall();
   }, [location, firstTimestamp, radius, gamesFilter]);
 
   const resetSearch = () => {
