@@ -64,8 +64,12 @@ const Home = () => {
       if (result.state !== 'granted') {
         setLocation([40.76911405953448, -73.97461862009996]);
       }
+      
+    }).catch(e => {
+      //ios doesnt support this feature so set something with a fast return time
+      setLocation([0,0]);
       navigator.geolocation.getCurrentPosition(success, error);
-    })
+    });
     
   }, []);
 
