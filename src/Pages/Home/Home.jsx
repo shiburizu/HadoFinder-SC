@@ -267,13 +267,15 @@ const Home = () => {
         </div>
       </section>
       <section className="contentDiv">
-        <Map
-          location={location}
-          setLocation={setLocation}
-          eventList={eventList}
-          radius={radius}
-        />
-        <div style={{ minWidth: "4%" }}></div>
+        <div className="MapDiv">
+          <Map
+            location={location}
+            setLocation={setLocation}
+            eventList={eventList}
+            radius={radius}
+          />
+        </div>
+        <div style={{ minWidth: "4vh" }}></div>
         <EventCalendar
           firstDay={firstDay}
           isLoggedIn={isLoggedIn}

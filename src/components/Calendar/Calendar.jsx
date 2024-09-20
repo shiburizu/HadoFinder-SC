@@ -1,6 +1,7 @@
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "./sass/styles.scss";
+import "./Calendar.scss";
 import { useEffect, useState, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { DateLocalizer } from "react-big-calendar/lib/localizer";

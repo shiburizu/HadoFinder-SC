@@ -33,6 +33,12 @@ main {
   }
 }
 
+.MapDiv {
+  min-width: 300px;
+  min-height: 70vh;
+  flex: 1;
+}
+
 .inputDiv {
   display: flex;
   flex-direction: column;
