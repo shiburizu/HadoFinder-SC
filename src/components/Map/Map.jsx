@@ -20,14 +20,6 @@ const myIcon = new Icon({
   popupAnchor: [-6, -17], // point from which the popup should open relative to the iconAnchor
 });
 
-const setMap = ( map ) => {
-  const resizeObserver = new ResizeObserver( () => {
-          map.invalidateSize()
-  })
-  const container = document.getElementById('map-container')
-  resizeObserver.observe(container)
-}
-
 const MultipleMarkers = (props) => {
   return props.data.map((item, index) => {
     const d = new Date(item.date * 1000);
@@ -96,15 +88,14 @@ const Map = (props) => {
   return (
     // Component from the leaflet react library
     <MapContainer
-      id="map-container"
-      whenCreated={setMap}
       center={[latitude, longitude]}
       zoom={9.5}
       ref={mapRef}
       // changes the dimensions of the map component
       style={{
         height: "70vh",
-        width: "auto",
+        minWidth: "48%",
+        maxWidth: "100%",
         zIndex: "0",
         borderRadius: "20px",
       }}

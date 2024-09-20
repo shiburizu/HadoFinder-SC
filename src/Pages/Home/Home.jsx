@@ -175,7 +175,7 @@ const Home = () => {
       }
     }
   };
-  
+
   useEffect(() => {
     apiCall();
   }, [location, firstTimestamp, radius, gamesFilter]);
@@ -258,14 +258,12 @@ const Home = () => {
         </div>
       </section>
       <section className="contentDiv">
-        <div className="MapDiv">
-          <Map
-            location={location}
-            setLocation={setLocation}
-            eventList={eventList}
-            radius={radius}
-          />
-        </div>
+        <Map
+          location={location}
+          setLocation={setLocation}
+          eventList={eventList}
+          radius={radius}
+        />
         <div style={{ minWidth: "4vh" }}></div>
         <EventCalendar
           firstDay={firstDay}
