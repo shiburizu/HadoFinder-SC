@@ -175,16 +175,7 @@ const Home = () => {
       }
     }
   };
-
-  useEffect(() => {
-    if (currentEvent) {
-      setEventList(eventList.filter((x) => x.id === currentEvent));
-    }
-    if (!currentEvent) {
-      setEventList(eventList);
-    }
-  }, [currentEvent]);
-
+  
   useEffect(() => {
     apiCall();
   }, [location, firstTimestamp, radius, gamesFilter]);
