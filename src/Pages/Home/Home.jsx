@@ -17,9 +17,7 @@ const headers = {
 const endpoint = import.meta.env.VITE_SGG_URL;
 
 const Home = () => {
-  const [location, setLocation] = useState([
-    40.76911405953448, -73.97461862009996,
-  ]);
+  const [location, setLocation] = useState([0,0]);
   const [eventList, setEventList] = useState([]);
   const [firstDay, setFirstDay] = useState("");
   const [lastDay, setLastDay] = useState("");
@@ -61,7 +59,14 @@ const Home = () => {
 
   // Geolocation API call
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.permissions.query({ name: 'geolocation' })
+    .then((result) => {
+      if (result.state !== 'granted') {
+        setLocation([40.76911405953448, -73.97461862009996]);
+      }
+      navigator.geolocation.getCurrentPosition(success, error);
+    })
+    
   }, []);
 
   const handleRadiusChange = (event) => {
@@ -70,7 +75,7 @@ const Home = () => {
 
   // API Call to Start.gg
   const apiCall = async () => {
-    if (firstTimestamp) {
+    if (firstTimestamp && location[0] != 0 && location [1] != 0) {
       if (gamesFilter) {
         try {
           const response = await axios({
