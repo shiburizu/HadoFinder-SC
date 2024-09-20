@@ -59,19 +59,17 @@ const Home = () => {
 
   // Geolocation API call
   useEffect(() => {
-    navigator.permissions.query({ name: 'geolocation' })
-    .catch(e => {
-      //cursed
+    try {
+      navigator.permissions.query({ name: 'geolocation' }).then((result) => {
+        if (result.state !== 'granted') {
+          setLocation([40.76911405953448, -73.97461862009996]);
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+      })
+    } catch (err) {
       setLocation([0,0]);
       navigator.geolocation.getCurrentPosition(success, error);
-    })
-    .then((result) => {
-      if (result.state !== 'granted') {
-        setLocation([40.76911405953448, -73.97461862009996]);
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-    })
-    
+    }
   }, []);
 
   const handleRadiusChange = (event) => {
