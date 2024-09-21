@@ -59,18 +59,13 @@ const Home = () => {
 
   // Geolocation API call
   useEffect(() => {
-    try {
       navigator.permissions.query({ name: 'geolocation' }).then((result) => {
         if (result.state !== 'granted') {
           setLocation([40.76911405953448, -73.97461862009996]);
-          navigator.geolocation.getCurrentPosition(success, error);
         }
+        navigator.geolocation.getCurrentPosition(success, error);
       })
-    } catch (err) {
-      setLocation([0,0]);
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }, []);
+    }, []);
 
   const handleRadiusChange = (event) => {
     setRadius(event.target.value);
